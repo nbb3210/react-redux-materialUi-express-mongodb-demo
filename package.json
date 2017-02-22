@@ -1,7 +1,7 @@
 {
-  "name": "pix",
-  "version": "0.0.0",
-  "private": true,
+  "name": "material-ui-react-express-mongodb",
+  "version": "1.0.0",
+  "description": "a demo for material-ui, react, express and mongodb",
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "postinstall": "npm run build",
@@ -47,6 +47,10 @@
     "style-loader": "^0.13.1",
     "superagent": "^3.4.1",
     "webpack": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nbb3210/pix.git"
   },
   "keywords": [
     "Material-UI",
