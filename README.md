@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is an [Demo](http://guangin.club/) that uses 
+This is an [Demo](http://guangin.club/) for photo sharing that uses 
 * [Material-UI](https://github.com/callemall/material-ui/)
 * [React](https://facebook.github.io/react/)
 * [Redux](https://github.com/reactjs/redux/)
