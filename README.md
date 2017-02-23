@@ -2,12 +2,15 @@
 
 ## Introduction
 
-This is an [Demo](http://guangin.club/) for photo sharing that uses 
+This is an [Demo](http://182.92.122.144:8888/) for photo sharing that uses 
 * [Material-UI](https://github.com/callemall/material-ui/)
 * [React](https://facebook.github.io/react/)
 * [Redux](https://github.com/reactjs/redux/)
 * [Express](http://expressjs.com/)
 * [MongoDB](https://www.mongodb.com/)
+
+Sometimes connect failed please let me know
+> nbb3210@gmail.com
 
 ## Installation
 
