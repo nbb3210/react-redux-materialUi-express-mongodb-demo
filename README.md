@@ -1,4 +1,4 @@
-# pix
+# react-redux-materialUi-express-mongodb-demo
 
 ## 简介
 
@@ -114,6 +114,6 @@ npm start
 
   native js function for hashing messages with SHA-1
 
-[Cloudinary](http://cloudinary.com/)
+云端图片存储[Cloudinary](http://cloudinary.com/)
 
   Cloudinary is the image back-end for web and mobile developers.

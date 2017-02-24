@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('pix:server');
+var debug = require('debug')('react-redux-materialUi-express-mongodb-demo:server');
 var http = require('http');
 
 /**

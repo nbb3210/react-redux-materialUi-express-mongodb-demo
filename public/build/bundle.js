@@ -19613,7 +19613,7 @@ var LoginView = function (_Component) {
         null,
         _react2.default.createElement(_Card.CardHeader, {
           title: 'PHOTO',
-          subtitle: 'Sharing'
+          subtitle: 'Share'
         }),
         _react2.default.createElement(
           _Card.CardText,
