@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>{{ title }}</title>
+  <title>Demo</title>
   <link rel="stylesheet" href="/assets/css/normalize.css" />
   <style>
       html {

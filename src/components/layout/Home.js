@@ -337,7 +337,7 @@ class Home extends Component {
     const menuitemTwoPrimaryText = this.props.account.user.username + '的皂片'
     const menuitemThreePrimaryText = '正在上传的皂片'
     const flatbuttonDisabled = (this.state.uploadingPhotos.length == 0) ? true : false
-    const flatbuttonLabel = (this.state.uploadingPhotos.length == 0) ? '木有皂片正在' : (this.state.uploadingPhotos.length + "张皂片正在")
+    const flatbuttonLabel = (this.state.uploadingPhotos.length == 0) ? '木有皂片在' : (this.state.uploadingPhotos.length + "张皂片正在")
     const myPhotoList = (this.props.photo.list == null) ? [] : this.props.photo.list
     const otherPhotoList = this.state.otherPhotos
     const actions = [

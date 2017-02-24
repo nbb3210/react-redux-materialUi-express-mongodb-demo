@@ -66,7 +66,7 @@ class LoginView extends Component {
       <Card>
         <CardHeader
           title="PHOTO"
-          subtitle="Share"
+          subtitle="Sharing"
           />
         <CardText>
           <TextField
