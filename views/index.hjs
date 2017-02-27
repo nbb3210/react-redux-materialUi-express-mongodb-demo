@@ -5,15 +5,9 @@
   <title>Demo</title>
   <link rel="stylesheet" href="/assets/css/normalize.css" />
   <style>
-      html {
+      html, body, #app {
         height:100%;
-      }
-      body {
-        height:100%;
-      }
-      #app {
-        height:100%;
-      }
+      }      
     </style>
 </head>
 

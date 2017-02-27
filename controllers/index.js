@@ -4,8 +4,8 @@ var CommentController = require('./CommentController')
 
 module.exports = {
 
-  profile: ProfileController,
-  photo: PhotoController,
-  comment: CommentController
+  profiles: ProfileController,
+  photos: PhotoController,
+  comments: CommentController
 
 }

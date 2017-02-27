@@ -18090,7 +18090,12 @@ var Entry = function (_Component) {
   _createClass(Entry, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.checkCurrentUser();
+      // this.props.checkCurrentUser()
+      fetch('account/currentuser').then(checkStatus).then(getJSON).then(function (data) {
+        return console.log(data);
+      }).catch(function (err) {
+        return console.log(err);
+      });
     }
   }, {
     key: 'render',
@@ -18318,6 +18323,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function checkStatus(res) {
+  if (res.status === 200) {
+    return Promise.resolve(res);
+  } else {
+    return Promise.reject(new Error(response.statusText));
+  }
+}
+
+function getJSON(res) {
+  return res.json();
+}
+
 var Login = function (_Component) {
   _inherits(Login, _Component);
 
@@ -18335,7 +18352,15 @@ var Login = function (_Component) {
   }, {
     key: 'login',
     value: function login(credentials) {
-      this.props.login(credentials);
+      // this.props.login(credentials)
+      fetch('account/login', {
+        "method": "post",
+        "body": credentials
+      }).then(checkStatus).then(getJSON).then(function (data) {
+        return console.log(data);
+      }).catch(function (err) {
+        return console.log(err);
+      });
     }
   }, {
     key: 'render',
@@ -19612,8 +19637,8 @@ var LoginView = function (_Component) {
         _Card.Card,
         null,
         _react2.default.createElement(_Card.CardHeader, {
-          title: 'PHOTO',
-          subtitle: 'Share'
+          title: 'Photo Sharing Demo',
+          subtitle: 'Only Support Chrome'
         }),
         _react2.default.createElement(
           _Card.CardText,

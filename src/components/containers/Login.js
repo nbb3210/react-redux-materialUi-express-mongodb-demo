@@ -3,6 +3,20 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 import { LoginView } from '../views/'
 
+function checkStatus(res) {
+  if (res.status === 200) {
+    return Promise.resolve(res)
+  } else {
+    return Promise.reject(
+      new Error(response.statusText)
+    )
+  }
+}
+
+function getJSON(res) {
+  return res.json()
+}
+
 class Login extends Component {
 
   register(registration) {
@@ -10,7 +24,15 @@ class Login extends Component {
   }
 
   login(credentials) {
-    this.props.login(credentials)
+    // this.props.login(credentials)
+    fetch('account/login', {
+      "method": "post",
+      "body": credentials
+    })
+      .then(checkStatus)
+      .then(getJSON)
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
   }
 
   render() {

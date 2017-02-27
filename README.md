@@ -14,6 +14,11 @@
 * [MongoDB](https://www.mongodb.com/)
 * [Cloudinary](http://cloudinary.com/)
 
+待采用的技术
+* OAuth2.0
+
+Demo尽量采用Restful API
+
 有任何问题和建议欢迎联系
 > nbb3210@gmail.com
 

@@ -21,7 +21,12 @@ const styles = {
 class Entry extends Component {
 
   componentDidMount() {
-    this.props.checkCurrentUser()
+    // this.props.checkCurrentUser()
+    fetch('account/currentuser')
+      .then(checkStatus)
+      .then(getJSON)
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
   }
 
   render() {

@@ -65,8 +65,8 @@ class LoginView extends Component {
     return (
       <Card>
         <CardHeader
-          title="PHOTO"
-          subtitle="Share"
+          title="Photo Sharing Demo"
+          subtitle="Only Support Chrome"
           />
         <CardText>
           <TextField

@@ -33,6 +33,27 @@ module.exports = {
     })
   },
 
+  getByPhotoId: function (photo_id) {
+    return new Promise(function (resolve, reject) {
+
+      var filters = {
+        sort: {
+          timestamp: -1
+        }
+      }
+
+      Comment.find({ photo_id: { $eq: photo_id } }, null, filters, function (err, comments) {
+        if (err) {
+          reject(er)
+          return
+        }
+
+        resolve(comments)
+        
+      })
+    })
+  },
+
   post: function (params) {
     return new Promise(function (resolve, reject) {
 

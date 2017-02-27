@@ -3,7 +3,7 @@ var Promise = require('bluebird')
 
 module.exports = {
 
-  get: function (params) {
+  get: function () {
     return new Promise(function (resolve, reject) {
 
       var filters = {
@@ -12,7 +12,7 @@ module.exports = {
         }
       }
 
-      Photo.find(params, null, filters, function (err, photos) {
+      Photo.find({}, null, filters, function (err, photos) {
         if (err) {
           reject(er)
           return
@@ -35,6 +35,27 @@ module.exports = {
 
         resolve(photo)
 
+      })
+    })
+  },
+
+  getByProfileId: function (profile_id) {
+    return new Promise(function (resolve, reject) {
+
+      var filters = {
+        sort: {
+          timestamp: -1
+        }
+      }
+
+      Photo.find({ profile_id: { $eq: profile_id } }, null, filters, function (err, photos) {
+        if (err) {
+          reject(er)
+          return
+        }
+
+        resolve(photos)
+        
       })
     })
   },
@@ -65,30 +86,6 @@ module.exports = {
 
         resolve(photo)
       })
-    })
-  },
-
-  others: function (id) {
-    return new Promise(function (resolve, reject) {
-
-      // Photo.find({ profile_id: { ne: id } }, function (err, photo) {
-      //   if (err) {
-      //     reject(err)
-      //     return
-      //   }
-
-      //   resolve(photo)
-      // })
-      Photo.find({}).where('profile_id').ne(id).exec(
-        function (err, photos) {
-          if (err) {
-            reject(err)
-            return
-          }
-
-          resolve(photos)
-        }
-      )
     })
   }
 
