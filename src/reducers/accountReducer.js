@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
   let updated = Object.assign({}, state)
   switch (action.type) {
 
-    case constants.CURRENT_USER_RECEIVED:
+    case constants.UPDATE_USER:
       updated['user'] = action.user
       return updated
 

@@ -2,44 +2,88 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import { LoginView } from '../views/'
-
-function checkStatus(res) {
-  if (res.status === 200) {
-    return Promise.resolve(res)
-  } else {
-    return Promise.reject(
-      new Error(response.statusText)
-    )
-  }
-}
-
-function getJSON(res) {
-  return res.json()
-}
+import { checkStatus, getJSON } from '../../utils'
 
 class Login extends Component {
 
-  register(registration) {
-    this.props.register(registration)
+  constructor() {
+    super()
+    this.state = {
+      errorTextUser: '',
+      errorTextPwd: ''
+    }
   }
 
-  login(credentials) {
-    // this.props.login(credentials)
-    fetch('account/login', {
-      "method": "post",
-      "body": credentials
+  register(registration) {
+
+    if (registration.username == '') {
+      this.setState({ errorTextUser: 'Username cannot be empty!' })
+      return
+    } else {
+      this.setState({ errorTextUser: '' })
+    }
+    if (registration.password == '') {
+      this.setState({ errorTextPwd: 'Password cannot be empty!' })
+      return
+    } else {
+      this.setState({ errorTextPwd: '' })
+    }
+
+    fetch('account/register', {
+      method: "post",
+      body: JSON.stringify(registration),
+      headers: { "Content-Type": "application/json" }
     })
       .then(checkStatus)
       .then(getJSON)
-      .then(data => console.log(data))
+      .then(data => {
+        if(data.user) this.props.updateUser(data.user)
+        if(data.message) this.setState({ errorTextUser: 'Username has been used!' })
+      })
       .catch(err => console.log(err))
+
+  }
+
+  login(registration) {
+
+    if (registration.username == '') {
+      this.setState({ errorTextUser: 'Username cannot be empty!' })
+      return
+    } else {
+      this.setState({ errorTextUser: '' })
+    }
+    if (registration.password == '') {
+      this.setState({ errorTextPwd: 'Password cannot be empty!' })
+      return
+    } else {
+      this.setState({ errorTextPwd: '' })
+    }
+
+    fetch('account/login', {
+      method: "post",
+      body: JSON.stringify(registration),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(checkStatus)
+      .then(getJSON)
+      .then(data => {
+        if (data.user) this.props.updateUser(data.user)
+        if (data.message) {
+          if (data.message == 'Wrong Username!') this.setState({ errorTextUser: 'Wrong Username or You have not registered!' })
+          if (data.message == 'Wrong Password!') this.setState({ errorTextPwd: data.message })
+        }
+      })
+      .catch(err => console.log(err))
+
   }
 
   render() {
     return (
       <LoginView
         onRegister={this.register.bind(this)}
-        onLogin={this.login.bind(this)} />
+        onLogin={this.login.bind(this)}
+        errorTextUser={this.state.errorTextUser}
+        errorTextPwd={this.state.errorTextPwd} />
     )
   }
 }
@@ -52,11 +96,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    register: (params) => dispatch(actions.register(params)),
-    login: (params) => dispatch(actions.login(params))
+    updateUser: (user) => dispatch(actions.updateUser(user))
   }
 }
-
-
 
 export default connect(stateToProps, dispatchToProps)(Login)

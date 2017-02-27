@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
 import TextField from 'material-ui/TextField'
+import EmailIcon from 'material-ui/svg-icons/communication/email'
 
 class LoginView extends Component {
 
@@ -11,9 +13,7 @@ class LoginView extends Component {
       registration: {
         username: '',
         password: ''
-      },
-      errorTextUser: '',
-      errorTextPwd: ''
+      }
     }
   }
 
@@ -25,48 +25,12 @@ class LoginView extends Component {
     })
   }
 
-  submitLoginCredentials(event) {
-    event.preventDefault()
-
-    this.setState({
-      errorTextUser: (this.state.registration.username.length == 0) ? 'Please Check Your Username !' : ''
-    })
-
-    this.setState({
-      errorTextPwd: (this.state.registration.password.length == 0) ? 'Please Check Your Password !' : ''
-    })
-
-    if ((this.state.errorTextUser != '') && (this.state.errorTextPwd != '')) {
-      return
-    }
-
-    this.props.onLogin(this.state.registration)
-  }
-
-  submitRegistration(event) {
-    event.preventDefault()
-
-    this.setState({
-      errorTextUser: (this.state.registration.username.length == 0) ? 'Please Check Your Username !' : ''
-    })
-
-    this.setState({
-      errorTextPwd: (this.state.registration.password.length == 0) ? 'Please Check Your Password !' : ''
-    })
-
-    if ((this.state.errorTextUser != '') && (this.state.errorTextPwd != '')) {
-      return
-    }
-
-    this.props.onRegister(this.state.registration)
-  }
-
   render() {
     return (
       <Card>
         <CardHeader
           title="Photo Sharing Demo"
-          subtitle="Only Support Chrome"
+          subtitle="Please use Chrome"
           />
         <CardText>
           <TextField
@@ -75,7 +39,7 @@ class LoginView extends Component {
             type="text"
             onChange={this.updateRegistration.bind(this)}
             id="username"
-            errorText={this.state.errorTextUser}
+            errorText={this.props.errorTextUser}
             /><br />
           <TextField
             hintText="Password"
@@ -83,19 +47,23 @@ class LoginView extends Component {
             type="password"
             onChange={this.updateRegistration.bind(this)}
             id="password"
-            errorText={this.state.errorTextPwd}
+            errorText={this.props.errorTextPwd}
             />
         </CardText>
         <CardActions>
           <FlatButton
-            onTouchTap={this.submitLoginCredentials.bind(this)}
+            onTouchTap={() => this.props.onLogin(this.state.registration)}
             label="LOGIN"
             />
           <FlatButton
-            onTouchTap={this.submitRegistration.bind(this)}
+            onTouchTap={() => this.props.onRegister(this.state.registration)}
             label="REGISTER"
             />
         </CardActions>
+        <CardText>
+          <IconButton iconClassName="fa fa-github" href="https://github.com/nbb3210/react-redux-materialUi-express-mongodb-demo" target="_blank"/>          
+          <span>nbb3210@gmail.com</span>
+        </CardText>
       </Card>
     )
   }

@@ -3,7 +3,7 @@ var Promise = require('bluebird')
 
 module.exports = {
 
-  get: function () {
+  get: function (params) {
     return new Promise(function (resolve, reject) {
 
       var filters = {
@@ -12,7 +12,7 @@ module.exports = {
         }
       }
 
-      Photo.find({}, null, filters, function (err, photos) {
+      Photo.find(params, null, filters, function (err, photos) {
         if (err) {
           reject(er)
           return

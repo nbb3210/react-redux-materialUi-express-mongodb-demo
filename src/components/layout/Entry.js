@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 import { Login } from '../containers/'
 import Home from './Home'
+import { checkStatus, getJSON } from '../../utils'
 
 const styles = {
   root: {
@@ -21,11 +22,12 @@ const styles = {
 class Entry extends Component {
 
   componentDidMount() {
-    // this.props.checkCurrentUser()
-    fetch('account/currentuser')
+    fetch('account/user')
       .then(checkStatus)
       .then(getJSON)
-      .then(data => console.log(data))
+      .then(data => {
+        if(data.user) this.props.updateUser(data.user)          
+      })
       .catch(err => console.log(err))
   }
 
@@ -53,7 +55,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    checkCurrentUser: () => dispatch(actions.checkCurrentUser())
+    updateUser: (user) => dispatch(actions.updateUser(user))
   }
 }
 

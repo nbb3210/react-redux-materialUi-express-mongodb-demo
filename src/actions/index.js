@@ -90,6 +90,15 @@ export default {
           console.log('ERROR IN DELETEMYPHOTO: ' + err.message)
         })
     }
+  },
+
+  updateUser: (user) => {
+    return (dispatch) => {      
+      dispatch({
+        type: constants.UPDATE_USER,
+        user: user
+      })
+    }
   }
 
 }

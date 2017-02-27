@@ -3,12 +3,13 @@
 
 <head>
   <title>Demo</title>
-  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />  
   <style>
       html, body, #app {
         height:100%;
       }      
     </style>
+    <script src="https://use.fontawesome.com/c939db754e.js"></script>
 </head>
 
 <body>
