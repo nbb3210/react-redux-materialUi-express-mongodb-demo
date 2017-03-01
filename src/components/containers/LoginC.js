@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { LoginView } from '../views/'
+import { LoginV } from '../views/'
 import { checkStatus, getJSON } from '../../utils'
 
-class Login extends Component {
+class LoginC extends Component {
 
   constructor() {
     super()
@@ -32,13 +32,15 @@ class Login extends Component {
     fetch('account/register', {
       method: "post",
       body: JSON.stringify(registration),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
+      mode: 'cors',
+      credentials: 'include'
     })
       .then(checkStatus)
       .then(getJSON)
       .then(data => {
-        if(data.user) this.props.updateUser(data.user)
-        if(data.message) this.setState({ errorTextUser: 'Username has been used!' })
+        if (data.user) this.props.updateUser(data.user)
+        if (data.message) this.setState({ errorTextUser: 'Username has been used!' })
       })
       .catch(err => console.log(err))
 
@@ -62,15 +64,21 @@ class Login extends Component {
     fetch('account/login', {
       method: "post",
       body: JSON.stringify(registration),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
+      mode: 'cors',
+      credentials: 'include'
     })
       .then(checkStatus)
       .then(getJSON)
-      .then(data => {
-        if (data.user) this.props.updateUser(data.user)
+      .then(data => {        
+        if (data.user) {
+          this.props.updateUser(data.user)
+          return
+        }
         if (data.message) {
           if (data.message == 'Wrong Username!') this.setState({ errorTextUser: 'Wrong Username or You have not registered!' })
-          if (data.message == 'Wrong Password!') this.setState({ errorTextPwd: data.message })
+          if (data.message == 'Wrong Password!') this.setState({ errorTextPwd: 'Wrong Password!' })
+          return
         }
       })
       .catch(err => console.log(err))
@@ -79,11 +87,12 @@ class Login extends Component {
 
   render() {
     return (
-      <LoginView
+      <LoginV
         onRegister={this.register.bind(this)}
         onLogin={this.login.bind(this)}
         errorTextUser={this.state.errorTextUser}
-        errorTextPwd={this.state.errorTextPwd} />
+        errorTextPwd={this.state.errorTextPwd}
+        />
     )
   }
 }
@@ -100,4 +109,4 @@ const dispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(stateToProps, dispatchToProps)(Login)
+export default connect(stateToProps, dispatchToProps)(LoginC)

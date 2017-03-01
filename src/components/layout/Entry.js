@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { Login } from '../containers/'
 import Home from './Home'
+import { LoginC } from '../containers/'
 import { checkStatus, getJSON } from '../../utils'
 
 const styles = {
@@ -22,25 +22,28 @@ const styles = {
 class Entry extends Component {
 
   componentDidMount() {
-    fetch('account/user')
+    fetch('account/user', {
+      mode: 'cors',
+      credentials: 'include'
+    })
       .then(checkStatus)
       .then(getJSON)
       .then(data => {
-        if(data.user) this.props.updateUser(data.user)          
+        if (data.user) this.props.updateUser(data.user)
       })
       .catch(err => console.log(err))
   }
 
   render() {
-    const currentUser = this.props.account.user
-
     return (
       <div style={styles.root}>
-        {(currentUser == null) ?
-          <div style={styles.login}>
-            <Login />
-          </div> :
+        {(this.props.user)
+          ?
           <Home />
+          :
+          <div style={styles.login}>
+            <LoginC />
+          </div>
         }
       </div>
     )
@@ -49,7 +52,7 @@ class Entry extends Component {
 
 const stateToProps = (state) => {
   return {
-    account: state.account
+    user: state.account.user
   }
 }
 

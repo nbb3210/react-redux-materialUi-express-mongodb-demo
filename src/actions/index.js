@@ -1,102 +1,133 @@
 import constants from '../constants'
-import { APIManager } from '../utils'
 
 export default {
 
-  register: (params) => {
-    return (dispatch) => {
-
-      APIManager.post('account/register', params)
-        .then((res) => {
-          dispatch({
-            type: constants.CURRENT_USER_RECEIVED,
-            user: res.user
-          })
-        })
-        .catch((err) => {
-          console.log('ERROR IN REGSTER: ' + err.message)
-        })
-    }
-  },
-
-  login: (params) => {
-    return (dispatch) => {
-
-      APIManager.post('account/login', params)
-        .then((res) => {
-          dispatch({
-            type: constants.CURRENT_USER_RECEIVED,
-            user: res.user
-          })
-        })
-        .catch((err) => {
-          console.log('ERROR IN LOGIN: ' + err.message)
-        })
-    }
-  },
-
-  checkCurrentUser: () => {
-    return (dispatch) => {
-
-      APIManager.get('account/currentuser', null)
-        .then((res) => {
-          dispatch({
-            type: constants.CURRENT_USER_RECEIVED,
-            user: res.user
-          })
-        })
-        .catch((err) => {
-          console.log('ERROR IN CHECKCURRENTUSER: ' + err.message)
-        })
-    }
-  },
-
-  createPhoto: (params) => {
-    return (dispatch) => {
-
-      APIManager.post('/api/photo', params)
-        .then(response => {
-          dispatch({ type: constants.PHOTO_CREATED, photo: response.result })
-        })
-        .catch((err) => {
-          console.log('ERROR IN CREAREPHOTO: ' + err);
-        })
-
-    }
-  },
-
-  fetchMyPhotos: (params) => {
-    return (dispatch) => {
-
-      APIManager.get('/api/photo', params)
-        .then(response => {
-          dispatch({ type: constants.MYPHOTOS_RECEIVED, photos: response.results })
-        })
-        .catch((err) => {
-          console.log('ERROR IN FETCHMYPHOTOS: ' + err);
-        })
-
-    }
-  },
-
-  deleteMyPhotos: (params) => {
-    return (dispatch) => {
-
-      APIManager.get('api/photo/delete/' + params, null)
-        .then(response => {
-          dispatch({ type: constants.MYPHOTO_DELETE, photo: response.result })
-        })
-        .catch((err) => {
-          console.log('ERROR IN DELETEMYPHOTO: ' + err.message)
-        })
-    }
-  },
-
   updateUser: (user) => {
-    return (dispatch) => {      
+    return (dispatch) => {
       dispatch({
         type: constants.UPDATE_USER,
-        user: user
+        user
+      })
+    }
+  },
+
+  logout: () => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.LOGOUT
+      })
+    }
+  },
+
+  changePhotoListType: (photoListType) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.CHANGE_PHOTOLISTTYPE,
+        photoListType
+      })
+    }
+  },
+
+  toggleUpload: () => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.TOGGLE_UPLOAD
+      })
+    }
+  },
+
+  addMyPhotos: (photo) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.ADD_MYPHOTOS,
+        photo
+      })
+    }
+  },
+
+  addUploadingPhotos: (photo) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.ADD_UPLOAINGPHOTOS,
+        photo
+      })
+    }
+  },
+
+  uploadedPhoto: (photo) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.UPLOADED_PHOTO,
+        photo
+      })
+    }
+  },
+
+  receiveMyphotos: (photos) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.RECEIVE_MYPHOTOS,
+        photos
+      })
+    }
+  },
+
+  receiveFriendphotos: (photos) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.RECEIVE_FRIENDPHOTOS,
+        photos
+      })
+    }
+  },
+
+  receiveMessage: (message) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.RECEIVE_MESSAGE,
+        message
+      })
+    }
+  },
+
+  closeMessage: () => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.CLOSE_MESSAGE,
+      })
+    }
+  },
+
+  clickPhoto: (photo) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.CLICK_PHOTO,
+        photo
+      })
+    }
+  },
+
+  destoryDisplay: () => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.DESTORY_DISPLAY,
+      })
+    }
+  },
+
+  toggleComment: () => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.TOGGLE_COMMENT
+      })
+    }
+  },
+
+  removeMyphoto: (photoId) => {
+    return (dispatch) => {
+      dispatch({
+        type: constants.REMOVE_MYPHOTO,
+        photoId: photoId
       })
     }
   }

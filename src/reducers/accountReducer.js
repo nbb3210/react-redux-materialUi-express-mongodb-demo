@@ -13,6 +13,10 @@ export default (state = initialState, action) => {
       updated['user'] = action.user
       return updated
 
+    case constants.LOGOUT:
+      updated['user'] = null
+      return updated
+
     default:
       return updated
       

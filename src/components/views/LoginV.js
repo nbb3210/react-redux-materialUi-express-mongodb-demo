@@ -3,9 +3,8 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import TextField from 'material-ui/TextField'
-import EmailIcon from 'material-ui/svg-icons/communication/email'
 
-class LoginView extends Component {
+export default class LoginV extends Component {
 
   constructor() {
     super()
@@ -61,12 +60,10 @@ class LoginView extends Component {
             />
         </CardActions>
         <CardText>
-          <IconButton iconClassName="fa fa-github" href="https://github.com/nbb3210/react-redux-materialUi-express-mongodb-demo" target="_blank"/>          
+          <IconButton iconClassName="fa fa-github" href="https://github.com/nbb3210/react-redux-materialUi-express-mongodb-demo" target="_blank" />
           <span>nbb3210@gmail.com</span>
         </CardText>
       </Card>
     )
   }
 }
-
-export default LoginView

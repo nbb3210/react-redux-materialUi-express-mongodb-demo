@@ -8,8 +8,8 @@
       html, body, #app {
         height:100%;
       }      
-    </style>
-    <script src="https://use.fontawesome.com/c939db754e.js"></script>
+  </style>
+  <script src="https://use.fontawesome.com/c939db754e.js"></script>
 </head>
 
 <body>

@@ -63,7 +63,7 @@ router.delete('/:resource/:id', function (req, res, next) {
 
   controller.delete(req.params.id)
     .then(function (result) {
-      res.status(204).json({
+      res.status(200).json({
         result: {}
       })
     })
@@ -101,6 +101,21 @@ router.post('/:resource/', function (req, res, next) {
 
 router.get('/profiles/:profile_id/photos', function (req, res, next) {
   controllers.photos.getByProfileId(req.params.profile_id)
+    .then(function (results) {
+      res.status(200).json({
+        results: results
+      })
+    })
+    .catch(function (err) {
+      res.status(500).json({
+        message: err
+      })
+    })
+})
+
+
+router.get('/friends/:profile_id/photos', function (req, res, next) {
+  controllers.photos.getByNotProfileId(req.params.profile_id)
     .then(function (results) {
       res.status(200).json({
         results: results

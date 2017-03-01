@@ -60,6 +60,27 @@ module.exports = {
     })
   },
 
+  getByNotProfileId: function (profile_id) {
+    return new Promise(function (resolve, reject) {
+
+      var filters = {
+        sort: {
+          timestamp: -1
+        }
+      }
+
+      Photo.find({ profile_id: { $ne: profile_id } }, null, filters, function (err, photos) {
+        if (err) {
+          reject(er)
+          return
+        }
+
+        resolve(photos)
+        
+      })
+    })
+  },
+
   post: function (params) {
     return new Promise(function (resolve, reject) {
 
