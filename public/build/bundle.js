@@ -57773,6 +57773,11 @@ var MyphotosC = function (_Component) {
       this.props.clickPhoto(photo);
     }
   }, {
+    key: 'addImg',
+    value: function addImg() {
+      this.props.toggleUpload();
+    }
+  }, {
     key: 'deletePhoto',
     value: function deletePhoto(photo_id) {
       var _this3 = this;
@@ -57793,6 +57798,7 @@ var MyphotosC = function (_Component) {
       return _react2.default.createElement(_views.MyphotosV, {
         photoList: this.props.myPhotos,
         clickImg: this.clickImg.bind(this),
+        addImg: this.addImg.bind(this),
         deletePhoto: this.deletePhoto.bind(this) });
     }
   }]);
@@ -57817,6 +57823,9 @@ var dispatchToProps = function dispatchToProps(dispatch) {
     },
     removeMyphoto: function removeMyphoto(photo_id) {
       return dispatch(_actions2.default.removeMyphoto(photo_id));
+    },
+    toggleUpload: function toggleUpload() {
+      return dispatch(_actions2.default.toggleUpload());
     }
   };
 };
@@ -57881,7 +57890,10 @@ var MyphotosV = function (_Component) {
         this.props.photoList.length == 0 ? _react2.default.createElement(_FlatButton2.default, {
           label: '\u6DFB\u52A0\u7682\u7247',
           labelPosition: 'before',
-          icon: _react2.default.createElement(_addAPhoto2.default, null)
+          icon: _react2.default.createElement(_addAPhoto2.default, null),
+          onTouchTap: function onTouchTap() {
+            return _this2.props.addImg();
+          }
         }) : _react2.default.createElement(
           _reactFlexboxGrid.Grid,
           { fluid: true },

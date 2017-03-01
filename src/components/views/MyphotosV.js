@@ -15,6 +15,7 @@ export default class MyphotosV extends Component {
             label="添加皂片"
             labelPosition="before"
             icon={<AddPhotoIcon />}
+            onTouchTap={() => this.props.addImg()}
             />
           :
           <Grid fluid>

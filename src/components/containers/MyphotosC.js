@@ -21,7 +21,11 @@ class MyphotosC extends Component {
     this.props.clickPhoto(photo)
   }
 
-  deletePhoto(photo_id) {    
+  addImg() {
+    this.props.toggleUpload()
+  }
+
+  deletePhoto(photo_id) {
     fetch(`api/photos/${photo_id}`, {
       method: "delete",
       mode: 'cors',
@@ -38,6 +42,7 @@ class MyphotosC extends Component {
       <MyphotosV
         photoList={this.props.myPhotos}
         clickImg={this.clickImg.bind(this)}
+        addImg={this.addImg.bind(this)}
         deletePhoto={this.deletePhoto.bind(this)} />
     )
   }
@@ -54,7 +59,8 @@ const dispatchToProps = (dispatch) => {
   return {
     receiveMyphotos: (photos) => dispatch(actions.receiveMyphotos(photos)),
     clickPhoto: (photo) => dispatch(actions.clickPhoto(photo)),
-    removeMyphoto: (photo_id) => dispatch(actions.removeMyphoto(photo_id))
+    removeMyphoto: (photo_id) => dispatch(actions.removeMyphoto(photo_id)),
+    toggleUpload: () => dispatch(actions.toggleUpload()),
   }
 }
 
