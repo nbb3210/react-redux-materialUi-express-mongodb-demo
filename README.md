@@ -205,3 +205,9 @@ view中大都是无状态的UI组件，参考materialUI，采用function的方�
 container包裹UI组件，负责用户交互，网络响应等，将状态以属性的方式传递给UI组件
 
 layout将各种container以一定的方式进行布局
+
+性能优化
+
+参考[React性能优化总结](https://segmentfault.com/a/1190000007811296#articleHeader4)
+
+shallowCompare OR immutable

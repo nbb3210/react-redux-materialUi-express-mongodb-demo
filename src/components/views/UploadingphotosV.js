@@ -17,11 +17,11 @@ const UploadingphotosV = (props) => (
       :
       <Grid fluid>
         <Row>
-          {props.photoList.map((photo, i) => {
+          {props.photoList.map((photo) => {
             return (
               <Col style={{ marginBottom: 10 }}
                 xs={12} sm={6} md={4} lg={3}
-                key={i}>
+                key={photo._id}>
                 <Paper zDepth={3} >
                   <img style={{ width: '96%', marginTop: '2%', marginLeft: '2%' }} src={photo.preview} />
                 </Paper>

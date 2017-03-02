@@ -17,11 +17,11 @@ const MyphotosV = (props) => (
       :
       <Grid fluid>
         <Row>
-          {props.photoList.map((photo, i) => {
+          {props.photoList.map((photo) => {
             return (
               <Col style={{ marginBottom: 10 }}
                 xs={12} sm={6} md={4} lg={3}
-                key={i}>
+                key={photo._id}>
                 <Card>
                   <CardMedia>
                     <img style={{ width: '100%', cursor: 'pointer' }}

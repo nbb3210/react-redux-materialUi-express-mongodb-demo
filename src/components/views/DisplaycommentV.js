@@ -21,9 +21,9 @@ const DisplaycommentV = (props) => (
         :
         <div>
           {
-            props.comments.map((comment, i) => {
+            props.comments.map((comment) => {
               return (
-                <div key={i}>
+                <div key={comment._id}>
                   <ListItem
                     leftAvatar={<Avatar src="images/jsa-128.jpg" />}
                     primaryText={comment.profile_name}

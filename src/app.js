@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import Entry from './components/layout/Entry'
+import Perf from 'react-addons-perf'
+
+window.Perf = Perf
 
 injectTapEventPlugin()
 
