@@ -1,28 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Lightbox from 'react-image-lightbox'
 
-export default class DisplayimgV extends Component {
-
-  constructor(){
-    super()
-    this.state = {
-      lightboxOpen: false
+const DisplayimgV = (props) => (
+  <div style={{ height: '100%' }}>
+    <img style={{ height: '100%', cursor: 'pointer' }} src={props.photo.src} onTouchTap={() => props.openLightbox()} />
+    {props.lightboxOpen &&
+      <Lightbox
+        mainSrc={props.photo.url}
+        mainSrcThumbnail={props.photo.src}
+        onCloseRequest={() => props.closeLightbox()}
+        />
     }
-  }
+  </div>
+)
 
-  render() {
-    return (
-      <div style={{height:'100%'}}>
-        <img style={{height:'100%'}} src={this.props.photo.src} onTouchTap={() => this.setState({ lightboxOpen: true })} />
-        {this.state.lightboxOpen &&
-          <Lightbox
-            mainSrc={this.props.photo.url}
-            mainSrcThumbnail={this.props.photo.src}
-            onCloseRequest={() => this.setState({ lightboxOpen: false })}
-            />
-        }
-      </div>
-    )
-  }
-
-}
+export default DisplayimgV

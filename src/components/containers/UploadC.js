@@ -124,19 +124,19 @@ class UploadC extends Component {
 
   submitUpload() {
     if (this.state.postPhoto.preview == '') {
-      this.setState({ errorTextCaption: '请选择上传皂片！' })
+      this.setState({ errorTextCaption: '请选择上传照片！' })
       return
     } else {
       this.setState({ errorTextCaption: '' })
     }
     if (this.state.postPhoto.name == '') {
-      this.setState({ errorTextName: '皂片名称不能为空！' })
+      this.setState({ errorTextName: '照片名称不能为空！' })
       return
     } else {
       this.setState({ errorTextName: '' })
     }
     if (this.state.postPhoto.caption == '') {
-      this.setState({ errorTextCaption: '皂片描述不能为空！' })
+      this.setState({ errorTextCaption: '照片描述不能为空！' })
       return
     } else {
       this.setState({ errorTextCaption: '' })

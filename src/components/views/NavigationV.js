@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation'
 import NavigateBeforeIcon from 'material-ui/svg-icons/image/navigate-before'
 import NavigateNextIcon from 'material-ui/svg-icons/image/navigate-next'
 import HomeIcon from 'material-ui/svg-icons/action/home'
 
-export default class NavigationV extends Component {
+const NavigationV = (props) => (
+  <BottomNavigation style={{ backgroundColor: 'rgb(232, 232, 232)' }}>
+    <BottomNavigationItem
+      label="上一张"
+      icon={<NavigateBeforeIcon />}
+      onTouchTap={() => props.clickBefore()}
+      />
+    <BottomNavigationItem
+      label="主页"
+      icon={<HomeIcon />}
+      onTouchTap={() => props.clickHome()}
+      />
+    <BottomNavigationItem
+      label="下一张"
+      icon={<NavigateNextIcon />}
+      onTouchTap={() => props.clickNext()}
+      />
+  </BottomNavigation>
+)
 
-  render() {
-    return (
-      <BottomNavigation style={{ backgroundColor: 'rgb(232, 232, 232)' }}>
-        <BottomNavigationItem
-          label="Brefore"
-          icon={<NavigateBeforeIcon />}
-          onTouchTap={() => this.props.clickBefore()}
-          />
-        <BottomNavigationItem
-          label="Home"
-          icon={<HomeIcon />}
-          onTouchTap={() => this.props.clickHome()}
-          />
-        <BottomNavigationItem
-          label="Next"
-          icon={<NavigateNextIcon />}
-          onTouchTap={() => this.props.clickNext()}
-          />
-      </BottomNavigation>
-    )
-  }
-
-}
+export default NavigationV

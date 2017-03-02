@@ -14,9 +14,6 @@
 * [MongoDB](https://www.mongodb.com/)
 * [Cloudinary](http://cloudinary.com/)
 
-待采用的技术
-* OAuth2.0
-
 Demo尽量采用Restful API
 
 有任何问题和建议欢迎联系
@@ -101,7 +98,7 @@ Express中间件
 
   Create a new morgan logger middleware function using the given format and options.
 
-  处理日志的中间件，在控制台输出信息
+  处理日志的中间件，在控制台输出信息，生产模式下需调整参数
 
 * [cookie-parser](https://github.com/expressjs/cookie-parser)
 
@@ -183,6 +180,28 @@ Express中间件
 
   项目实现中，将图片存储于云端
 
-生产模式
+## 开发心得
 
-* 调整morgan中间件的模式
+react的官方文档摘要
+
+> An element describes what you want to see on the screen.Elements are what components are "made of".
+
+> Components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
+
+> All React components must act like pure functions with respect to their props.
+
+> Application UIs are dynamic and change over time. State allows React components to change their output over time in response to user actions, network responses, and anything else.
+
+> state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+
+> A component may choose to pass its state down as props to its child components
+
+> This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
+
+项目中，将组件分为三种，view，container和layout，
+
+view中大都是无状态的UI组件，参考materialUI，采用function的方式写
+
+container包裹UI组件，负责用户交互，网络响应等，将状态以属性的方式传递给UI组件
+
+layout将各种container以一定的方式进行布局

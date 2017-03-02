@@ -33,8 +33,8 @@ class ToolbarC extends Component {
     return (
       <ToolbarV
         dropDownMenuValue={this.props.photoListType}
-        menuItemTwoText={this.props.username + "的皂片"}
-        flatButtonLabel={(this.props.uploadingPhotos.length == 0) ? "木有皂片在" : `${this.props.uploadingPhotos.length}张皂片在`}
+        menuItemTwoText={this.props.username + "的照片"}
+        flatButtonLabel={(this.props.uploadingPhotos.length == 0) ? "木有照片在" : `${this.props.uploadingPhotos.length}张照片在`}
         flatButtonDisabled={(this.props.uploadingPhotos.length == 0) ? true : false}
         changeDropDownMenuValue={this.changeDropDownMenuValue.bind(this)}
         clickFlatButton={this.clickFlatButton.bind(this)}

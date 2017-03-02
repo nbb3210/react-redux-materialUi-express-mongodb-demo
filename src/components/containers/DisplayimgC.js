@@ -5,11 +5,26 @@ import { DisplayimgV } from '../views/'
 
 class DisplayimgC extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      lightboxOpen: false
+    }
+  }
+
+  toggleLightbox() {
+    this.setState({
+      lightboxOpen: !this.state.lightboxOpen
+    })
+  }
+
   render() {
     return (
       <DisplayimgV
         photo={this.props.displayPhoto}
-        />
+        lightboxOpen={this.state.lightboxOpen}
+        openLightbox={this.toggleLightbox.bind(this)}
+        closeLightbox={this.toggleLightbox.bind(this)} />
     )
   }
 
@@ -23,7 +38,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    
+
   }
 }
 

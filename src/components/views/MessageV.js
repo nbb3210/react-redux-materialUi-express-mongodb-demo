@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Snackbar from 'material-ui/Snackbar'
 
-export default class MessageV extends Component {
+const MessageV = (props) => (
+  <Snackbar
+    open={props.open}
+    message={props.message}
+    autoHideDuration={3000}
+    onRequestClose={() => props.messageClose()}
+    />
+)
 
-  render() {
-    return (
-      <Snackbar
-        open={this.props.open}
-        message={this.props.message}
-        autoHideDuration={3000}
-        onRequestClose={() => this.props.messageClose()}       
-        />
-    )
-  }
-
-}
+export default MessageV

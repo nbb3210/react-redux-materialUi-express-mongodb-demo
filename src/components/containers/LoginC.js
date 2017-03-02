@@ -10,20 +10,23 @@ class LoginC extends Component {
     super()
     this.state = {
       errorTextUser: '',
-      errorTextPwd: ''
+      errorTextPwd: '',
+      registration: {
+        username: '',
+        password: ''
+      }
     }
   }
 
-  register(registration) {
-
-    if (registration.username == '') {
-      this.setState({ errorTextUser: 'Username cannot be empty!' })
+  register() {
+    if (this.state.registration.username == '') {
+      this.setState({ errorTextUser: '账号不能为空!' })
       return
     } else {
       this.setState({ errorTextUser: '' })
     }
-    if (registration.password == '') {
-      this.setState({ errorTextPwd: 'Password cannot be empty!' })
+    if (this.state.registration.password == '') {
+      this.setState({ errorTextPwd: '密码不能为空!' })
       return
     } else {
       this.setState({ errorTextPwd: '' })
@@ -31,7 +34,7 @@ class LoginC extends Component {
 
     fetch('account/register', {
       method: "post",
-      body: JSON.stringify(registration),
+      body: JSON.stringify(this.state.registration),
       headers: { "Content-Type": "application/json" },
       mode: 'cors',
       credentials: 'include'
@@ -40,22 +43,22 @@ class LoginC extends Component {
       .then(getJSON)
       .then(data => {
         if (data.user) this.props.updateUser(data.user)
-        if (data.message) this.setState({ errorTextUser: 'Username has been used!' })
+        if (data.message) this.setState({ errorTextUser: '该账号已被使用!' })
       })
       .catch(err => console.log(err))
 
   }
 
-  login(registration) {
+  login() {
 
-    if (registration.username == '') {
-      this.setState({ errorTextUser: 'Username cannot be empty!' })
+    if (this.state.registration.username == '') {
+      this.setState({ errorTextUser: '账号不能为空!' })
       return
     } else {
       this.setState({ errorTextUser: '' })
     }
-    if (registration.password == '') {
-      this.setState({ errorTextPwd: 'Password cannot be empty!' })
+    if (this.state.registration.password == '') {
+      this.setState({ errorTextPwd: '密码不能为空!' })
       return
     } else {
       this.setState({ errorTextPwd: '' })
@@ -63,21 +66,21 @@ class LoginC extends Component {
 
     fetch('account/login', {
       method: "post",
-      body: JSON.stringify(registration),
+      body: JSON.stringify(this.state.registration),
       headers: { "Content-Type": "application/json" },
       mode: 'cors',
       credentials: 'include'
     })
       .then(checkStatus)
       .then(getJSON)
-      .then(data => {        
+      .then(data => {
         if (data.user) {
           this.props.updateUser(data.user)
           return
         }
         if (data.message) {
-          if (data.message == 'Wrong Username!') this.setState({ errorTextUser: 'Wrong Username or You have not registered!' })
-          if (data.message == 'Wrong Password!') this.setState({ errorTextPwd: 'Wrong Password!' })
+          if (data.message == 'Wrong Username!') this.setState({ errorTextUser: '该账号不存在!' })
+          if (data.message == 'Wrong Password!') this.setState({ errorTextPwd: '密码错误!' })
           return
         }
       })
@@ -85,11 +88,20 @@ class LoginC extends Component {
 
   }
 
+  updateRegistration(event, value) {
+    let updated = Object.assign({}, this.state.registration)
+    updated[event.target.id] = event.target.value    
+    this.setState({
+      registration: updated
+    })
+  }
+
   render() {
     return (
       <LoginV
         onRegister={this.register.bind(this)}
         onLogin={this.login.bind(this)}
+        updateRegistration={this.updateRegistration.bind(this)}
         errorTextUser={this.state.errorTextUser}
         errorTextPwd={this.state.errorTextPwd}
         />
